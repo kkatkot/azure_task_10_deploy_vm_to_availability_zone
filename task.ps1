@@ -13,6 +13,10 @@ $vm2Name = "matebox-2"
 $vmImage = "Ubuntu2204"
 $vmSize = "Standard_B1s"
 
+if (-not (Test-Path $publicKeyPath)) {
+    throw "Error: The SSH public key file was not found at path: '$publicKeyPath'. Please create it."
+}
+
 Write-Host "Creating a resource group $resourceGroupName ..."
 New-AzResourceGroup -Name $resourceGroupName -Location $location
 
